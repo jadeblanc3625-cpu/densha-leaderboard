@@ -77,6 +77,19 @@
   .cd-note{text-align:center;color:var(--text-dim);font-size:13px;margin-top:10px}
   .cd-ended{color:var(--neon-pink);font-weight:700;text-shadow:0 0 10px rgba(255,46,151,.5)}
 
+  /* ===== 提交按钮 ===== */
+  .cta{text-align:center;margin:30px 0 6px}
+  .submit-btn{
+    display:inline-block;font-size:clamp(15px,3.2vw,19px);font-weight:900;letter-spacing:.05em;
+    color:#0a0410;text-decoration:none;padding:15px 40px;border-radius:999px;
+    background:linear-gradient(90deg,var(--neon-yel),var(--neon-pink));
+    box-shadow:0 0 26px rgba(255,46,151,.5), 0 6px 20px rgba(0,0,0,.4);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .submit-btn:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 40px rgba(255,46,151,.7)}
+  .submit-btn.disabled{background:rgba(255,255,255,.12);color:var(--text-dim);box-shadow:none;cursor:not-allowed;pointer-events:none}
+  .cta-hint{color:var(--text-dim);font-size:12px;margin-top:12px;line-height:1.7;padding:0 10px}
+
   /* ===== 领奖台 ===== */
   .podium{
     display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:12px;align-items:end;
@@ -134,6 +147,11 @@
     <div class="countdown" id="countdown"></div>
     <div class="cd-note" id="cdnote"></div>
 
+    <div class="cta">
+      <a class="submit-btn" id="submitBtn" href="#" target="_blank" rel="noopener">🎬 提交我的炫技成绩</a>
+      <div class="cta-hint">上传未剪辑通关视频（含最终得分画面）· 官方审核后计入排行榜</div>
+    </div>
+
     <div class="podium" id="podium"></div>
 
     <div class="board" id="board"></div>
@@ -162,6 +180,11 @@
     document.getElementById("title").textContent = EVENT.title;
     document.getElementById("stage").textContent = EVENT.stage;
     document.getElementById("updated").textContent = "最近更新：" + EVENT.updatedAt;
+
+    // ---- 提交按钮 ----
+    const submitBtn = document.getElementById("submitBtn");
+    if(EVENT.formUrl){ submitBtn.href = EVENT.formUrl; }
+    else { submitBtn.classList.add("disabled"); submitBtn.textContent = "提交入口暂未开放"; }
 
     // ---- 领奖台（前三）----
     const podiumOrder = [1,0,2]; // 视觉顺序：银 金 铜
@@ -210,6 +233,9 @@
       if(diff <= 0){
         cdEl.innerHTML = "";
         noteEl.innerHTML = '<span class="cd-ended">⛔ 挑战赛已截止，感谢各位炫客大人的参与！</span>';
+        submitBtn.classList.add("disabled");
+        submitBtn.textContent = "提交已截止";
+        submitBtn.removeAttribute("href");
         clearInterval(timer);
         return;
       }

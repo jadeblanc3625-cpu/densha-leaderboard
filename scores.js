@@ -5,6 +5,7 @@
 
    1. 改活动信息：改 EVENT 里的字段
         deadline 用 "2026-07-30T23:59:59+08:00" 这种格式，倒计时会自动算
+        formUrl  是「提交成绩」按钮跳转的问卷链接，换表单改这里即可
    2. 加/改榜单：在 PLAYERS 数组里增删条目
         - 不用手动写 rank（排名），页面会按 score 从高到低自动排
         - platform 只能填：Steam / PS / Xbox / Switch （大小写要一致）
@@ -17,6 +18,7 @@ const EVENT = {
   title:    "《电车炫客》得分挑战赛",
   stage:    "四国区域 3-2-2 「信的试炼场」",
   deadline: "2026-07-30T23:59:59+08:00",
+  formUrl:  "https://leiting.feishu.cn/share/base/form/shrcnw5yf1RwQnqunWtRfOrwhVb",
   updatedAt: "2026-07-14"
 };
 
