@@ -56,8 +56,11 @@
 
   /* ===== 品牌 LOGO ===== */
   .logo-wrap{margin:6px auto 4px;display:flex;justify-content:center}
+  .logo-link{display:block;line-height:0;width:min(78%,520px);transition:transform .18s ease}
+  .logo-link:hover{transform:scale(1.04)}
+  .logo-link:active{transform:scale(.99)}
   .logo{
-    width:min(78%,520px);height:auto;display:block;
+    width:100%;height:auto;display:block;
     /* 霓虹辉光，让透明 logo 融入暗色主题 */
     filter:
       drop-shadow(0 0 22px rgba(255,46,151,.45))
@@ -163,7 +166,9 @@
     <header>
       <span class="kicker">SCORE CHALLENGE · 得分挑战赛</span>
       <div class="logo-wrap">
-        <img class="logo" src="logo.png" alt="电车炫客" decoding="async">
+        <a class="logo-link" href="https://store.steampowered.com/app/2524850/_/" target="_blank" rel="noopener" title="前往 Steam 商店页">
+          <img class="logo" src="logo.png" alt="电车炫客 · 点击前往 Steam 商店页" decoding="async">
+        </a>
       </div>
       <h1 id="title" class="sr-only">《电车炫客》得分挑战赛</h1>
       <div class="stage">📍 挑战关卡 · <b id="stage">四国区域 3-2-2 「信的试炼场」</b></div>
