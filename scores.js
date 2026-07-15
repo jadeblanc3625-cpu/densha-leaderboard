@@ -23,12 +23,6 @@ const EVENT = {
 };
 
 const PLAYERS = [
-  { name: "轨道之王TETSU", score: 1284500, platform: "Steam",  video: "https://www.bilibili.com/", date: "2026-07-13" },
-  { name: "磨轨少女Mika",   score: 1198000, platform: "Switch", video: "https://www.youtube.com/", date: "2026-07-12" },
-  { name: "0号线幽灵",      score: 1150750, platform: "PS",     video: "https://www.bilibili.com/", date: "2026-07-14" },
-  { name: "废轨拾荒者",      score: 987600,  platform: "Xbox",   video: "https://www.youtube.com/", date: "2026-07-11" },
-  { name: "末班车DRIFT",    score: 902300,  platform: "Steam",  video: "https://www.bilibili.com/", date: "2026-07-13" },
-  { name: "霓虹脱轨",        score: 845100,  platform: "PS",     video: "https://www.bilibili.com/", date: "2026-07-10" },
-  { name: "站台涂鸦手",      score: 799900,  platform: "Switch", video: "https://www.youtube.com/", date: "2026-07-12" },
-  { name: "反乌托邦快线",    score: 731200,  platform: "Steam",  video: "https://www.bilibili.com/", date: "2026-07-09" }
+  // 暂无成绩。审核通过后按下面格式往数组里加即可（分数会自动排序）：
+  // { name: "炫客昵称", score: 1000000, platform: "Steam", video: "https://...", date: "2026-07-20" },
 ];

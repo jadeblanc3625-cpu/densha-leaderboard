@@ -153,6 +153,17 @@
 
   footer{text-align:center;color:var(--text-dim);font-size:12px;margin-top:28px;line-height:1.9}
 
+  /* ===== 空榜提示 ===== */
+  .empty{
+    text-align:center;padding:48px 20px;color:var(--text-dim);
+  }
+  .empty .big{
+    font-size:clamp(18px,4vw,24px);font-weight:900;margin-bottom:10px;
+    background:linear-gradient(90deg,var(--neon-pink),var(--neon-cyan));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .empty .sub{font-size:14px;line-height:1.8}
+
   @media (max-width:600px){
     .row{grid-template-columns:44px 1fr 62px 54px;font-size:13px;padding:12px 10px}
     .row .pl{display:none}          /* 手机上隐藏平台列，省空间 */
@@ -216,10 +227,21 @@
     if(EVENT.formUrl){ submitBtn.href = EVENT.formUrl; }
     else { submitBtn.classList.add("disabled"); submitBtn.textContent = "提交入口暂未开放"; }
 
+    // ---- 空榜：无成绩时显示占位提示，跳过领奖台和榜单 ----
+    const podEl = document.getElementById("podium");
+    const boardEl = document.getElementById("board");
+    if(ranked.length === 0){
+      podEl.remove();
+      boardEl.innerHTML = `
+        <div class="empty">
+          <div class="big">🏁 榜单虚位以待</div>
+          <div class="sub">还没有炫客登榜——通关 3-2-2「信的试炼场」，<br>录下你的成绩，抢占首个王座！</div>
+        </div>`;
+    } else {
+
     // ---- 领奖台（前三）----
     const podiumOrder = [1,0,2]; // 视觉顺序：银 金 铜
     const medals = ["🥇","🥈","🥉"];
-    const podEl = document.getElementById("podium");
     podiumOrder.forEach(i=>{
       const p = ranked[i];
       if(!p){ podEl.insertAdjacentHTML("beforeend", `<div></div>`); return; }
@@ -236,7 +258,6 @@
     });
 
     // ---- 完整榜单 ----
-    const boardEl = document.getElementById("board");
     boardEl.insertAdjacentHTML("beforeend", `
       <div class="row head">
         <div class="rk">#</div><div class="nm">炫客</div>
@@ -252,6 +273,7 @@
           <div class="vd"><a href="${encodeURI(p.video)}" target="_blank" rel="noopener">▶ 观看</a></div>
         </div>`);
     });
+    } // end 非空榜单
 
     // ---- 倒计时 ----
     const cdEl = document.getElementById("countdown");
