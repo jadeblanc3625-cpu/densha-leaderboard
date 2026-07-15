@@ -53,6 +53,28 @@
     border:1px solid var(--neon-cyan);border-radius:999px;padding:5px 16px;margin-bottom:16px;
     text-shadow:0 0 8px var(--neon-cyan);box-shadow:0 0 18px rgba(0,229,255,.25) inset;
   }
+
+  /* ===== 品牌 LOGO ===== */
+  .logo-wrap{margin:6px auto 4px;display:flex;justify-content:center}
+  .logo{
+    width:min(78%,520px);height:auto;display:block;
+    /* 霓虹辉光，让透明 logo 融入暗色主题 */
+    filter:
+      drop-shadow(0 0 22px rgba(255,46,151,.45))
+      drop-shadow(0 0 42px rgba(0,229,255,.28));
+    animation:logoGlow 3.6s ease-in-out infinite;
+  }
+  @keyframes logoGlow{
+    0%,100%{filter:drop-shadow(0 0 20px rgba(255,46,151,.40)) drop-shadow(0 0 36px rgba(0,229,255,.22))}
+    50%    {filter:drop-shadow(0 0 30px rgba(255,46,151,.60)) drop-shadow(0 0 54px rgba(0,229,255,.38))}
+  }
+  @media (prefers-reduced-motion:reduce){ .logo{animation:none} }
+
+  /* 屏幕阅读器可见、视觉隐藏（保留 h1 语义） */
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
   h1{
     font-size:clamp(28px,6vw,52px);line-height:1.05;font-weight:900;letter-spacing:.02em;
     background:linear-gradient(90deg,var(--neon-pink),var(--neon-yel),var(--neon-cyan));
@@ -140,7 +162,10 @@
   <div class="wrap">
     <header>
       <span class="kicker">SCORE CHALLENGE · 得分挑战赛</span>
-      <h1 id="title">《电车炫客》得分挑战赛</h1>
+      <div class="logo-wrap">
+        <img class="logo" src="logo.png" alt="电车炫客" decoding="async">
+      </div>
+      <h1 id="title" class="sr-only">《电车炫客》得分挑战赛</h1>
       <div class="stage">📍 挑战关卡 · <b id="stage">四国区域 3-2-2 「信的试炼场」</b></div>
     </header>
 
