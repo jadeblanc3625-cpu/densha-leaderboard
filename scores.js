@@ -23,6 +23,8 @@ const EVENT = {
 };
 
 const PLAYERS = [
-  // 暂无成绩。审核通过后按下面格式往数组里加即可（分数会自动排序）：
-  // { name: "炫客昵称", score: 1000000, platform: "Steam", video: "https://...", date: "2026-07-20" },
+  // 加/改榜单：按下面格式往数组里加条目即可（分数会自动从高到低排序）
+  // platform 只能填 Steam / PS / Xbox / Switch
+  // video 填选手视频链接；没有视频就留空字符串 ""，页面不会显示跳转按钮
+  { name: "凑数来的", score: 59592, platform: "Steam", video: "", date: "2026-07-16" },
 ];

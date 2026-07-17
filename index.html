@@ -150,6 +150,7 @@
   .vd{text-align:center}
   .vd a{color:var(--neon-cyan);text-decoration:none;font-size:13px}
   .vd a:hover{text-shadow:0 0 8px var(--neon-cyan)}
+  .vd .novid{color:var(--text-dim);opacity:.5}
 
   footer{text-align:center;color:var(--text-dim);font-size:12px;margin-top:28px;line-height:1.9}
 
@@ -204,12 +205,14 @@
     </footer>
   </div>
 
-  <script src="scores.js"></script>
+  <script src="scores.js?v=4"></script>
   <script>
     // ---- 平台图标 ----
     const PLAT_ICON = { Steam:"🎮 Steam", PS:"🕹 PS", Xbox:"🎯 Xbox", Switch:"🔴 Switch" };
     function platLabel(p){ return PLAT_ICON[p] || p; }
     function fmt(n){ return n.toLocaleString("en-US"); }
+    // 有真实链接才算有视频：空字符串、缺省、"#" 都视为无视频
+    function hasVideo(v){ return typeof v === "string" && v.trim() !== "" && v.trim() !== "#"; }
 
     // ---- 排序：分数降序，同分则日期早者优先 ----
     const ranked = [...PLAYERS].sort((a,b)=>{
@@ -252,7 +255,7 @@
           <div class="pscore">${fmt(p.score)}</div>
           <div class="pmeta">
             <span class="plat">${platLabel(p.platform)}</span>
-            <a class="vid" href="${encodeURI(p.video)}" target="_blank" rel="noopener">▶ 视频</a>
+            ${hasVideo(p.video) ? `<a class="vid" href="${encodeURI(p.video)}" target="_blank" rel="noopener">▶ 视频</a>` : ``}
           </div>
         </div>`);
     });
@@ -270,7 +273,7 @@
           <div class="nm">${escapeHtml(p.name)}</div>
           <div class="sc">${fmt(p.score)}</div>
           <div class="pl"><span>${platLabel(p.platform)}</span></div>
-          <div class="vd"><a href="${encodeURI(p.video)}" target="_blank" rel="noopener">▶ 观看</a></div>
+          <div class="vd">${hasVideo(p.video) ? `<a href="${encodeURI(p.video)}" target="_blank" rel="noopener">▶ 观看</a>` : `<span class="novid">—</span>`}</div>
         </div>`);
     });
     } // end 非空榜单
