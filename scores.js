@@ -27,5 +27,5 @@ const PLAYERS = [
   // platform 只能填 Steam / PS / Xbox / Switch
   // video 填选手视频链接；没有视频就留空字符串 ""，页面不会显示跳转按钮
   { name: "凑数来的", score: 59592, platform: "Steam", video: "", date: "2026-07-16" },
-  { name: "Rxy", score: 775180, platform: "Steam", video: "", date: "2026-07-17" },
+  { name: "Rxy", score: 1705561, platform: "Steam", video: "", date: "2026-07-17" },
 ];
