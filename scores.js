@@ -29,5 +29,5 @@ const PLAYERS = [
   { name: "凑数来的", score: 59592, platform: "Steam", video: "", date: "2026-07-16" },
   { name: "Rxy", score: 1705561, platform: "Steam", video: "", date: "2026-07-17" },
   { name: "安念研", score: 515677, platform: "Steam", video: "", date: "2026-07-17" },
-  { name: "火山兰兰", score: 1244256, platform: "Steam", video: "", date: "2026-07-17" },
+  { name: "火山兰兰", score: 1244256, platform: "Steam", video: "https://www.bilibili.com/video/BV1YPKK6xEXd/", date: "2026-07-17" },
 ];
