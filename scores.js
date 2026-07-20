@@ -19,7 +19,7 @@ const EVENT = {
   stage:    "四国区域 3-2-2 「信的试炼场」",
   deadline: "2026-07-30T23:59:59+08:00",
   formUrl:  "https://leiting.feishu.cn/share/base/form/shrcnw5yf1RwQnqunWtRfOrwhVb",
-  updatedAt: "2026-07-14"
+  updatedAt: "2026-07-20"
 };
 
 const PLAYERS = [
