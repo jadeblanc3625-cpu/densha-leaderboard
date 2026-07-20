@@ -27,7 +27,7 @@ const PLAYERS = [
   // platform 只能填 Steam / PS / Xbox / Switch
   // video 填选手视频链接；没有视频就留空字符串 ""，页面不会显示跳转按钮
   { name: "凑数来的", score: 59592, platform: "Steam", video: "", date: "2026-07-16" },
-  { name: "Rxy", score: 1955502, platform: "Steam", video: "", date: "2026-07-17" },
+  { name: "Rxy", score: 2010221, platform: "Steam", video: "", date: "2026-07-17" },
   { name: "安念研", score: 515677, platform: "Steam", video: "", date: "2026-07-17" },
   { name: "火山兰兰", score: 1244256, platform: "Steam", video: "https://www.bilibili.com/video/BV1YPKK6xEXd/", date: "2026-07-17" },
 ];
