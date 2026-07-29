@@ -19,7 +19,7 @@ const EVENT = {
   stage:    "四国区域 3-2-2 「信的试炼场」",
   deadline: "2026-07-30T23:59:59+08:00",
   formUrl:  "https://leiting.feishu.cn/share/base/form/shrcnw5yf1RwQnqunWtRfOrwhVb",
-  updatedAt: "2026-07-27"
+  updatedAt: "2026-07-29"
 };
 
 const PLAYERS = [
@@ -27,8 +27,9 @@ const PLAYERS = [
   // platform 只能填 Steam / PS / Xbox / Switch
   // video 填选手视频链接；没有视频就留空字符串 ""，页面不会显示跳转按钮
   { name: "凑数来的", score: 59592, platform: "Steam", video: "", date: "2026-07-16" },
+  { name: "子扬", score: 4003407, platform: "Steam", video: "", date: "2026-07-29" },
   { name: "Rxy", score: 3053501, platform: "Steam", video: "", date: "2026-07-27" },
-  { name: "安念研", score: 1524507, platform: "Steam", video: "", date: "2026-07-27" },
+  { name: "安念研", score: 2137541, platform: "Steam", video: "", date: "2026-07-29" },
   { name: "火山兰兰", score: 1244256, platform: "Steam", video: "https://www.bilibili.com/video/BV1YPKK6xEXd/", date: "2026-07-17" },
   { name: "次元乡的暗黑邪神", score: 2344507, platform: "Steam", video: "https://www.bilibili.com/video/BV142ge6KEKp/", date: "2026-07-26" },
 ];
