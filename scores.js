@@ -31,5 +31,5 @@ const PLAYERS = [
   { name: "Rxy", score: 3053501, platform: "Steam", video: "", date: "2026-07-27" },
   { name: "安念研", score: 2137541, platform: "Steam", video: "", date: "2026-07-29" },
   { name: "火山兰兰", score: 1244256, platform: "Steam", video: "https://www.bilibili.com/video/BV1YPKK6xEXd/", date: "2026-07-17" },
-  { name: "次元乡的暗黑邪神", score: 2344507, platform: "Steam", video: "https://www.bilibili.com/video/BV142ge6KEKp/", date: "2026-07-26" },
+  { name: "次元乡的暗黑邪神", score: 2782503, platform: "Steam", video: "https://www.bilibili.com/video/BV142ge6KEKp/", date: "2026-07-29" },
 ];
