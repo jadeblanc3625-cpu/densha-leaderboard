@@ -30,7 +30,7 @@ const PLAYERS = [
   { name: "子扬", score: 4561448, platform: "Steam", video: "https://b23.tv/vYYauVA", date: "2026-07-30" },
   { name: "瞬闪影", score: 4665253, platform: "Steam", video: "https://www.bilibili.com/video/BV1xc3462Eep", date: "2026-07-30" },
   { name: "Rxy", score: 3180847, platform: "Steam", video: "", date: "2026-07-30" },
-  { name: "安念研", score: 2137541, platform: "Steam", video: "", date: "2026-07-29" },
+  { name: "安念研", score: 2816125, platform: "Steam", video: "", date: "2026-07-29" },
   { name: "火山兰兰", score: 1244256, platform: "Steam", video: "https://www.bilibili.com/video/BV1YPKK6xEXd/", date: "2026-07-17" },
   { name: "次元乡的暗黑邪神", score: 2782503, platform: "Steam", video: "https://www.bilibili.com/video/BV142ge6KEKp/", date: "2026-07-29" },
 ];
