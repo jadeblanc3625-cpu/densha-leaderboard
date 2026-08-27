@@ -115,6 +115,33 @@
   .submit-btn.disabled{background:rgba(255,255,255,.12);color:var(--text-dim);box-shadow:none;cursor:not-allowed;pointer-events:none}
   .cta-hint{color:var(--text-dim);font-size:12px;margin-top:12px;line-height:1.7;padding:0 10px}
 
+  /* ===== 次级按钮（积分榜跳转）===== */
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center}
+  .ghost-btn{
+    display:inline-flex;align-items:center;gap:7px;font-size:clamp(13px,2.8vw,15px);font-weight:800;
+    letter-spacing:.04em;color:var(--neon-cyan);text-decoration:none;padding:13px 26px;border-radius:999px;
+    background:rgba(0,229,255,.06);border:1px solid var(--neon-cyan);
+    box-shadow:0 0 16px rgba(0,229,255,.18) inset;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .ghost-btn:hover{transform:translateY(-2px);box-shadow:0 0 26px rgba(0,229,255,.4), 0 0 16px rgba(0,229,255,.2) inset}
+
+  /* ===== 本届奖励 ===== */
+  .rewards-title{text-align:center;margin:34px 0 14px;font-size:13px;letter-spacing:.28em;color:var(--neon-cyan);text-transform:uppercase}
+  .rewards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:640px;margin:0 auto}
+  .reward{
+    position:relative;text-align:center;padding:18px 12px 16px;border-radius:14px;overflow:hidden;
+    background:var(--card);border:1px solid var(--line);backdrop-filter:blur(6px);
+  }
+  .reward::after{content:"";position:absolute;left:0;right:0;top:0;height:3px}
+  .reward.r1::after{background:var(--gold);box-shadow:0 0 18px var(--gold)}
+  .reward.r2::after{background:var(--silver);box-shadow:0 0 18px var(--silver)}
+  .reward.r3::after{background:var(--bronze);box-shadow:0 0 18px var(--bronze)}
+  .reward.r1{box-shadow:0 0 30px rgba(255,212,71,.16)}
+  .reward .rmedal{font-size:30px;line-height:1}
+  .reward .rplace{font-size:12px;color:var(--text-dim);margin-top:6px;letter-spacing:.1em}
+  .reward .rlabel{font-size:clamp(13px,2.8vw,15px);font-weight:800;color:var(--text);margin-top:6px;line-height:1.4}
+  @media (max-width:520px){ .rewards{gap:8px} .reward{padding:14px 6px 12px} .reward .rmedal{font-size:24px} }
+
   /* ===== 领奖台 ===== */
   .podium{
     display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:12px;align-items:end;
@@ -182,17 +209,23 @@
           <img class="logo" src="logo.png" alt="电车炫客 · 点击前往 Steam 商店页" decoding="async">
         </a>
       </div>
-      <h1 id="title" class="sr-only">《电车炫客》得分挑战赛</h1>
-      <div class="stage">📍 挑战关卡 · <b id="stage">四国区域 3-2-2 「信的试炼场」</b></div>
+      <h1 id="title" class="sr-only">《电车炫客》第二届得分挑战赛</h1>
+      <div class="stage">📍 挑战关卡 · <b id="stage">中部 6-3-2 「一切向“钱”看」</b></div>
     </header>
 
     <div class="countdown" id="countdown"></div>
     <div class="cd-note" id="cdnote"></div>
 
     <div class="cta">
-      <a class="submit-btn" id="submitBtn" href="#" target="_blank" rel="noopener">🎬 提交我的炫技成绩</a>
+      <div class="cta-row">
+        <a class="submit-btn" id="submitBtn" href="#" target="_blank" rel="noopener">🎬 提交我的炫技成绩</a>
+        <a class="ghost-btn" href="points.html">🏅 累计积分榜</a>
+      </div>
       <div class="cta-hint">上传未剪辑通关视频（含最终得分画面）· 官方审核后计入排行榜</div>
     </div>
+
+    <div class="rewards-title">本届奖励</div>
+    <div class="rewards" id="rewards"></div>
 
     <div class="podium" id="podium"></div>
 
@@ -205,7 +238,7 @@
     </footer>
   </div>
 
-  <script src="scores.js?v=12"></script>
+  <script src="scores.js?v=13"></script>
   <script>
     // ---- 平台图标 ----
     const PLAT_ICON = { Steam:"🎮 Steam", PS:"🕹 PS", Xbox:"🎯 Xbox", Switch:"🔴 Switch" };
@@ -230,6 +263,22 @@
     if(EVENT.formUrl){ submitBtn.href = EVENT.formUrl; }
     else { submitBtn.classList.add("disabled"); submitBtn.textContent = "提交入口暂未开放"; }
 
+    // ---- 本届奖励 ----
+    const rewardsEl = document.getElementById("rewards");
+    if(rewardsEl && Array.isArray(EVENT.rewards) && EVENT.rewards.length){
+      EVENT.rewards.forEach(r=>{
+        rewardsEl.insertAdjacentHTML("beforeend", `
+          <div class="reward r${r.place}">
+            <div class="rmedal">${escapeHtml(r.medal || "")}</div>
+            <div class="rplace">第 ${r.place} 名</div>
+            <div class="rlabel">${escapeHtml(r.label || "")}</div>
+          </div>`);
+      });
+    } else if(rewardsEl){
+      rewardsEl.previousElementSibling?.remove();
+      rewardsEl.remove();
+    }
+
     // ---- 空榜：无成绩时显示占位提示，跳过领奖台和榜单 ----
     const podEl = document.getElementById("podium");
     const boardEl = document.getElementById("board");
@@ -238,7 +287,7 @@
       boardEl.innerHTML = `
         <div class="empty">
           <div class="big">🏁 榜单虚位以待</div>
-          <div class="sub">还没有炫客登榜——通关 3-2-2「信的试炼场」，<br>录下你的成绩，抢占首个王座！</div>
+          <div class="sub">还没有炫客登榜——通关 ${escapeHtml(EVENT.stage)}，<br>录下你的成绩，抢占首个王座！</div>
         </div>`;
     } else {
 
