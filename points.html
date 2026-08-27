@@ -137,7 +137,7 @@
         <li>每届得分挑战赛结束后，最终排名<b>前十名</b>获得积分：第 1 名 10 分，第 2 名 9 分，依次递减至第 10 名 1 分。</li>
         <li>第 11 名及以后不获得积分。</li>
         <li>各届积分<b>持续累计</b>，同一玩家跨届成绩累加到一起。</li>
-        <li id="medal-rule">六届得分挑战赛结束后，累计积分排名前三的玩家分别获得定制实体奖章：🥇金 / 🥈银 / 🥉铜（规格及重量以官方后续通知为准）。</li>
+        <li><span id="goal-cn">五</span>届得分挑战赛结束后，累计积分排名前三的玩家分别获得定制实体奖章：🥇金 / 🥈银 / 🥉铜（规格及重量以官方后续通知为准）。</li>
       </ul>
       <div class="ptbl" id="ptbl"></div>
     </div>
@@ -150,7 +150,8 @@
     function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
     const seasons = (typeof SEASONS !== "undefined" && Array.isArray(SEASONS)) ? SEASONS : [];
     const table = (typeof POINTS_TABLE !== "undefined" && Array.isArray(POINTS_TABLE)) ? POINTS_TABLE : [10,9,8,7,6,5,4,3,2,1];
-    const goalSeasons = (typeof MEDAL_GOAL_SEASONS === "number") ? MEDAL_GOAL_SEASONS : 6;
+    const goalSeasons = (typeof MEDAL_GOAL_SEASONS === "number") ? MEDAL_GOAL_SEASONS : 5;
+    const goalCn = ["零","一","二","三","四","五","六","七","八","九","十"][goalSeasons] || goalSeasons;
 
     // ---- 计算每届名次并累计积分 ----
     // 每届：分数降序，同分则日期早者优先；前十名按 POINTS_TABLE 给分。
@@ -188,11 +189,11 @@
     const medals = ["🥇","🥈","🥉"];
     const leaders = standings.slice(0,3).map((s,i)=>`${medals[i]} ${escapeHtml(s.name)}（${s.total}）`).join("　");
     document.getElementById("goal").innerHTML = `
-      <div class="g-title">🏆 六届奖章争夺 · 累计积分前三</div>
+      <div class="g-title">🏆 ${goalCn}届奖章争夺 · 累计积分前三</div>
       <div class="g-medals">🥇 金奖章　🥈 银奖章　🥉 铜奖章</div>
       <div class="g-body">${played >= goalSeasons
-        ? "六届挑战赛已全部结束，最终累计前三名将获得定制实体奖章。"
-        : `六届挑战赛结束后，累计积分前三名将分别获得定制实体奖章。<br>已进行 ${played} / ${goalSeasons} 届，还有 ${goalSeasons - played} 届。`}</div>
+        ? `${goalCn}届挑战赛已全部结束，最终累计前三名将获得定制实体奖章。`
+        : `${goalCn}届挑战赛结束后，累计积分前三名将分别获得定制实体奖章。<br>已进行 ${played} / ${goalSeasons} 届，还有 ${goalSeasons - played} 届。`}</div>
       ${leaders ? `<div class="g-progress">当前领跑：${leaders}</div>` : ``}`;
 
     // ---- 累计积分榜 ----
@@ -220,6 +221,9 @@
           </div>`);
       });
     }
+
+    // ---- 规则里的届数 ----
+    document.getElementById("goal-cn").textContent = goalCn;
 
     // ---- 积分对照表 ----
     document.getElementById("ptbl").innerHTML =
