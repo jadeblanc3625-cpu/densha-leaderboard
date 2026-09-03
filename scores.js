@@ -25,7 +25,7 @@ const EVENT = {
   stage:     "中部 6-3-2 「一切向“钱”看」",
   deadline:  "2026-09-11T23:59:59+08:00",
   formUrl:   "https://leiting.feishu.cn/share/base/form/shrcn08EqZjOCiMAHgiY2E37j2c",
-  updatedAt: "2026-08-31",
+  updatedAt: "2026-09-03",
   // 本届奖励（展示用）
   rewards: [
     { place: 1, medal: "🥇", label: "Steam 礼品卡 300 元" },
@@ -37,7 +37,7 @@ const EVENT = {
 // 第二届实时榜单（刚开赛，暂无成绩）。审核通过一位就往下面加一条：
 // { name: "玩家名", score: 1234567, platform: "Steam", video: "https://...", date: "2026-09-01" },
 const PLAYERS = [
-  { name: "Bastion0589", score: 5181212, platform: "Steam", video: "https://www.bilibili.com/video/BV1ULth66EfB/", date: "2026-08-31" },
+  { name: "Bastion0589", score: 6064540, platform: "Steam", video: "https://www.bilibili.com/video/BV1thtU6WEY8/", date: "2026-09-03" },
 ];
 
 // 积分规则：每届最终排名前十名依次得 10、9、…、1 分；第 11 名及以后 0 分。
