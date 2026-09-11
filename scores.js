@@ -40,6 +40,7 @@ const PLAYERS = [
   { name: "Bastion0589", score: 7063539, platform: "Steam", video: "https://www.bilibili.com/video/BV1qrY86aEp1/", date: "2026-09-11" },
   { name: "Rxy", score: 2495948, platform: "Steam", video: "", date: "2026-09-07" },
   { name: "阿尔托莉雅", score: 1583928, platform: "Steam", video: "", date: "2026-09-11" },
+  { name: "我变强了！", score: 357829, platform: "Steam", video: "", date: "2026-09-11" },
 ];
 
 // 积分规则：每届最终排名前十名依次得 10、9、…、1 分；第 11 名及以后 0 分。
