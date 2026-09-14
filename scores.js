@@ -69,4 +69,18 @@ const SEASONS = [
       { name: "凑数来的",        score: 59592,   platform: "Steam", video: "",                                             date: "2026-07-16" },
     ],
   },
+  {
+    season: 2,
+    title:  "第二届得分挑战赛",
+    stage:  "中部 6-3-2 「一切向“钱”看」",
+    players: [
+      { name: "子扬",        score: 7519129, platform: "Steam", video: "",                                             date: "2026-09-11" },
+      { name: "Bastion0589", score: 7063539, platform: "Steam", video: "https://www.bilibili.com/video/BV1qrY86aEp1/", date: "2026-09-11" },
+      { name: "瞬闪影",      score: 4970029, platform: "Steam", video: "",                                             date: "2026-09-11" },
+      { name: "安念研",      score: 4718984, platform: "Steam", video: "",                                             date: "2026-09-11" },
+      { name: "Rxy",         score: 2495948, platform: "Steam", video: "",                                             date: "2026-09-07" },
+      { name: "阿尔托莉雅",  score: 1583928, platform: "Steam", video: "",                                             date: "2026-09-11" },
+      { name: "凑数来的",    score: 357829,  platform: "Steam", video: "",                                             date: "2026-09-11" },
+    ],
+  },
 ];
