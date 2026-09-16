@@ -11,12 +11,14 @@
    2. 加/改本届榜单：在 PLAYERS 数组里增删条目
         - 不用手动写 rank（排名），页面会按 score 从高到低自动排
         - platform 只能填：Steam / PS / Xbox / Switch （大小写要一致）
+        - qq 填玩家 QQ 号（结算凭据）。页面只展示前两位和后两位，中间打码
         - video 填玩家提交的视频链接
         - date 填你审核通过的日期
    3. 同分处理：分数一样时，date 早的排前面（先提交先得）
    4. 积分榜（points.html）：每届结束后，把该届 PLAYERS 的最终结果
       整理进 SEASONS 数组，积分榜会自动按「前十名 10→1 分」累计。
-        - 玩家名要跨届保持一致，积分才能正确累加到同一个人身上
+        - 积分按 qq 累计，跨届改名也能算到同一个人身上；qq 必须准确一致
+        - 累计榜显示的是该玩家最近一届用的代号（qq 相同即视为同一人）
    ============================================================ */
 
 const EVENT = {
@@ -35,15 +37,15 @@ const EVENT = {
 };
 
 // 第二届实时榜单（刚开赛，暂无成绩）。审核通过一位就往下面加一条：
-// { name: "玩家名", score: 1234567, platform: "Steam", video: "https://...", date: "2026-09-01" },
+// { name: "玩家名", qq: "10001", score: 1234567, platform: "Steam", video: "https://...", date: "2026-09-01" },
 const PLAYERS = [
-  { name: "Bastion0589", score: 7063539, platform: "Steam", video: "https://www.bilibili.com/video/BV1qrY86aEp1/", date: "2026-09-11" },
-  { name: "Rxy", score: 2495948, platform: "Steam", video: "", date: "2026-09-07" },
-  { name: "阿尔托莉雅", score: 1583928, platform: "Steam", video: "", date: "2026-09-11" },
-  { name: "我变强了！", score: 357829, platform: "Steam", video: "", date: "2026-09-11" },
-  { name: "安念研", score: 4718984, platform: "Steam", video: "", date: "2026-09-11" },
-  { name: "子扬", score: 7519129, platform: "Steam", video: "", date: "2026-09-11" },
-  { name: "瞬闪影", score: 4970029, platform: "Steam", video: "", date: "2026-09-11" },
+  { name: "Bastion0589", qq: "1971948327", score: 7063539, platform: "Steam", video: "https://www.bilibili.com/video/BV1qrY86aEp1/", date: "2026-09-11" },
+  { name: "Rxy",         qq: "807939420",  score: 2495948, platform: "Steam", video: "", date: "2026-09-07" },
+  { name: "阿尔托莉雅",  qq: "515208093",  score: 1583928, platform: "Steam", video: "", date: "2026-09-11" },
+  { name: "我变强了！",  qq: "1823004786", score: 357829,  platform: "Steam", video: "", date: "2026-09-11" },
+  { name: "安念研",      qq: "2565315854", score: 4718984, platform: "Steam", video: "", date: "2026-09-11" },
+  { name: "子扬",        qq: "2964959443", score: 7519129, platform: "Steam", video: "", date: "2026-09-11" },
+  { name: "瞬闪影",      qq: "2412216282", score: 4970029, platform: "Steam", video: "", date: "2026-09-11" },
 ];
 
 // 积分规则：每届最终排名前十名依次得 10、9、…、1 分；第 11 名及以后 0 分。
@@ -60,13 +62,13 @@ const SEASONS = [
     title:  "第一届得分挑战赛",
     stage:  "四国区域 3-2-2 「信的试炼场」",
     players: [
-      { name: "瞬闪影",          score: 4665253, platform: "Steam", video: "https://www.bilibili.com/video/BV1xc3462Eep", date: "2026-07-30" },
-      { name: "子扬",            score: 4561448, platform: "Steam", video: "https://b23.tv/vYYauVA",                       date: "2026-07-30" },
-      { name: "Rxy",             score: 3180847, platform: "Steam", video: "",                                             date: "2026-07-30" },
-      { name: "安念研",          score: 2816125, platform: "Steam", video: "",                                             date: "2026-07-29" },
-      { name: "次元乡的暗黑邪神", score: 2782503, platform: "Steam", video: "https://www.bilibili.com/video/BV142ge6KEKp/", date: "2026-07-29" },
-      { name: "火山兰兰",        score: 1244256, platform: "Steam", video: "https://www.bilibili.com/video/BV1YPKK6xEXd/", date: "2026-07-17" },
-      { name: "凑数来的",        score: 59592,   platform: "Steam", video: "",                                             date: "2026-07-16" },
+      { name: "瞬闪影",          qq: "2412216282", score: 4665253, platform: "Steam", video: "https://www.bilibili.com/video/BV1xc3462Eep", date: "2026-07-30" },
+      { name: "子扬",            qq: "2964959443", score: 4561448, platform: "Steam", video: "https://b23.tv/vYYauVA",                       date: "2026-07-30" },
+      { name: "Rxy",             qq: "807939420",  score: 3180847, platform: "Steam", video: "",                                             date: "2026-07-30" },
+      { name: "安念研",          qq: "2565315854", score: 2816125, platform: "Steam", video: "",                                             date: "2026-07-29" },
+      { name: "次元乡的暗黑邪神", qq: "196754453",  score: 2782503, platform: "Steam", video: "https://www.bilibili.com/video/BV142ge6KEKp/", date: "2026-07-29" },
+      { name: "火山兰兰",        qq: "2739387427", score: 1244256, platform: "Steam", video: "https://www.bilibili.com/video/BV1YPKK6xEXd/", date: "2026-07-17" },
+      { name: "凑数来的",        qq: "1823004786", score: 59592,   platform: "Steam", video: "",                                             date: "2026-07-16" },
     ],
   },
   {
@@ -74,13 +76,13 @@ const SEASONS = [
     title:  "第二届得分挑战赛",
     stage:  "中部 6-3-2 「一切向“钱”看」",
     players: [
-      { name: "子扬",        score: 7519129, platform: "Steam", video: "",                                             date: "2026-09-11" },
-      { name: "Bastion0589", score: 7063539, platform: "Steam", video: "https://www.bilibili.com/video/BV1qrY86aEp1/", date: "2026-09-11" },
-      { name: "瞬闪影",      score: 4970029, platform: "Steam", video: "",                                             date: "2026-09-11" },
-      { name: "安念研",      score: 4718984, platform: "Steam", video: "",                                             date: "2026-09-11" },
-      { name: "Rxy",         score: 2495948, platform: "Steam", video: "",                                             date: "2026-09-07" },
-      { name: "阿尔托莉雅",  score: 1583928, platform: "Steam", video: "",                                             date: "2026-09-11" },
-      { name: "凑数来的",    score: 357829,  platform: "Steam", video: "",                                             date: "2026-09-11" },
+      { name: "子扬",        qq: "2964959443", score: 7519129, platform: "Steam", video: "",                                             date: "2026-09-11" },
+      { name: "Bastion0589", qq: "1971948327", score: 7063539, platform: "Steam", video: "https://www.bilibili.com/video/BV1qrY86aEp1/", date: "2026-09-11" },
+      { name: "瞬闪影",      qq: "2412216282", score: 4970029, platform: "Steam", video: "",                                             date: "2026-09-11" },
+      { name: "安念研",      qq: "2565315854", score: 4718984, platform: "Steam", video: "",                                             date: "2026-09-11" },
+      { name: "Rxy",         qq: "807939420",  score: 2495948, platform: "Steam", video: "",                                             date: "2026-09-07" },
+      { name: "阿尔托莉雅",  qq: "515208093",  score: 1583928, platform: "Steam", video: "",                                             date: "2026-09-11" },
+      { name: "我变强了！",  qq: "1823004786", score: 357829,  platform: "Steam", video: "",                                             date: "2026-09-11" },
     ],
   },
 ];

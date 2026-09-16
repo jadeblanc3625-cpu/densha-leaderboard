@@ -85,6 +85,8 @@
   .rk.m1{color:var(--gold)} .rk.m2{color:var(--silver)} .rk.m3{color:var(--bronze)}
   .nm{font-weight:700;word-break:break-all}
   .nm .medal{margin-right:6px}
+  .nm .qq{margin-left:8px;font-weight:600;font-size:11px;color:var(--text-dim);letter-spacing:.04em;
+    padding:1px 7px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid var(--line);white-space:nowrap}
   .pts{font-weight:900;color:var(--neon-yel);font-size:19px;text-align:right}
   .pts small{font-size:11px;color:var(--text-dim);font-weight:600;margin-left:3px}
   .brk{font-size:12px;color:var(--text-dim);text-align:right;display:flex;gap:6px;justify-content:flex-end;flex-wrap:wrap}
@@ -146,7 +148,7 @@
     <footer id="footer"></footer>
   </div>
 
-  <script src="scores.js?v=13"></script>
+  <script src="scores.js?v=14"></script>
   <script>
     function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
     const seasons = (typeof SEASONS !== "undefined" && Array.isArray(SEASONS)) ? SEASONS : [];
@@ -154,9 +156,18 @@
     const goalSeasons = (typeof MEDAL_GOAL_SEASONS === "number") ? MEDAL_GOAL_SEASONS : 5;
     const goalCn = ["零","一","二","三","四","五","六","七","八","九","十"][goalSeasons] || goalSeasons;
 
+    // QQ 脱敏：只保留前两位和后两位，中间打码。无 QQ 则回退空串。
+    function maskQQ(q){
+      const s = String(q == null ? "" : q).trim();
+      if(!s) return "";
+      if(s.length <= 4) return s[0] + "*".repeat(Math.max(1, s.length - 2)) + s[s.length - 1];
+      return s.slice(0, 2) + "*".repeat(s.length - 4) + s.slice(-2);
+    }
+
     // ---- 计算每届名次并累计积分 ----
     // 每届：分数降序，同分则日期早者优先；前十名按 POINTS_TABLE 给分。
-    const agg = new Map(); // name -> { name, total, byS:[{season,rank,pts}] }
+    // 结算以 QQ 为准：同一 QQ 跨届累加；无 QQ 的旧数据回退用名字当 key。
+    const agg = new Map(); // key(qq|name) -> { key, qq, name, nameSeason, total, byS:[{season,rank,pts}] }
     seasons.forEach(se=>{
       const ranked = [...(se.players||[])].sort((a,b)=>{
         if(b.score !== a.score) return b.score - a.score;
@@ -165,8 +176,12 @@
       ranked.forEach((p,i)=>{
         const pts = i < table.length ? table[i] : 0;
         if(pts <= 0) return;
-        if(!agg.has(p.name)) agg.set(p.name, { name:p.name, total:0, byS:[] });
-        const rec = agg.get(p.name);
+        const qq = (p.qq == null ? "" : String(p.qq).trim());
+        const key = qq || ("name:" + p.name);
+        if(!agg.has(key)) agg.set(key, { key, qq, name:p.name, nameSeason:-1, total:0, byS:[] });
+        const rec = agg.get(key);
+        // 代号取最近一届（season 最大者）所用的名字
+        if(se.season >= rec.nameSeason){ rec.name = p.name; rec.nameSeason = se.season; rec.qq = qq || rec.qq; }
         rec.total += pts;
         rec.byS.push({ season: se.season, rank: i+1, pts });
       });
@@ -216,7 +231,7 @@
         boardEl.insertAdjacentHTML("beforeend", `
           <div class="row">
             <div class="rk${mcls}">${i+1}</div>
-            <div class="nm">${medal}${escapeHtml(s.name)}</div>
+            <div class="nm">${medal}${escapeHtml(s.name)}${s.qq ? `<span class="qq">QQ ${escapeHtml(maskQQ(s.qq))}</span>` : ``}</div>
             <div class="pts">${s.total}<small>分</small></div>
             <div class="brk">${chips}</div>
           </div>`);
