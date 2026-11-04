@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>电车炫客 · 得分挑战赛排行榜</title>
+<title>《电车炫客》第三届白金挑战赛 · 排行榜</title>
 <style>
   /* ===== 视觉主题变量：拿到品牌配色后改这几个就能整体换色 ===== */
   :root{
@@ -203,7 +203,7 @@
 <body>
   <div class="wrap">
     <header>
-      <span class="kicker">SCORE CHALLENGE · 得分挑战赛</span>
+      <span class="kicker" id="kicker">SCORE CHALLENGE · 得分挑战赛</span>
       <div class="logo-wrap">
         <a class="logo-link" href="https://store.steampowered.com/app/2524850/_/" target="_blank" rel="noopener" title="前往 Steam 商店页">
           <img class="logo" src="logo.png" alt="电车炫客 · 点击前往 Steam 商店页" decoding="async">
@@ -238,7 +238,7 @@
     </footer>
   </div>
 
-  <script src="scores.js?v=14"></script>
+  <script src="scores.js?v=15"></script>
   <script>
     // ---- 平台图标 ----
     const PLAT_ICON = { Steam:"🎮 Steam", PS:"🕹 PS", Xbox:"🎯 Xbox", Switch:"🔴 Switch" };
@@ -255,6 +255,9 @@
 
     // ---- 填充标题/关卡 ----
     document.getElementById("title").textContent = EVENT.title;
+    const kickerEl = document.getElementById("kicker");
+    if(kickerEl && EVENT.kicker){ kickerEl.textContent = EVENT.kicker; }
+    document.title = EVENT.title + " · 排行榜";
     document.getElementById("stage").textContent = EVENT.stage;
     document.getElementById("updated").textContent = "最近更新：" + EVENT.updatedAt;
 

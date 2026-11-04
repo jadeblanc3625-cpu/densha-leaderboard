@@ -1,13 +1,15 @@
 /* ============================================================
-   电车炫客 · 得分挑战赛 排行榜数据
+   电车炫客 · 挑战赛 排行榜数据
    ------------------------------------------------------------
    【你只需要改这个文件！改完保存，刷新网页即可。】
 
    1. 改本届活动信息：改 EVENT 里的字段
-        stage    本届挑战关卡
-        deadline 用 "2026-09-11T23:59:59+08:00" 这种格式，倒计时会自动算
-        formUrl  是「提交成绩」按钮跳转的问卷链接，换表单改这里即可
-        rewards  本届奖励，按名次填
+        title     本届活动标题（页面主标题）
+        kicker    顶部小标签，格式 "英文 · 中文名"
+        stage     本届挑战关卡
+        deadline  用 "2026-11-19T23:59:59+08:00" 这种格式，倒计时会自动算
+        formUrl   是「提交成绩」按钮跳转的问卷链接，换表单改这里即可
+        rewards   本届奖励，按名次填
    2. 加/改本届榜单：在 PLAYERS 数组里增删条目
         - 不用手动写 rank（排名），页面会按 score 从高到低自动排
         - platform 只能填：Steam / PS / Xbox / Switch （大小写要一致）
@@ -22,12 +24,13 @@
    ============================================================ */
 
 const EVENT = {
-  title:     "《电车炫客》第二届得分挑战赛",
-  season:    2,
-  stage:     "中部 6-3-2 「一切向“钱”看」",
-  deadline:  "2026-09-11T23:59:59+08:00",
-  formUrl:   "https://leiting.feishu.cn/share/base/form/shrcn08EqZjOCiMAHgiY2E37j2c",
-  updatedAt: "2026-09-11",
+  title:     "《电车炫客》第三届白金挑战赛",
+  kicker:    "PLATINUM CHALLENGE · 第三届白金挑战赛",
+  season:    3,
+  stage:     "关西区域 5-2-2 「开战在即」",
+  deadline:  "2026-11-19T23:59:59+08:00",
+  formUrl:   "https://leiting.feishu.cn/share/base/form/shrcnDEfDW4z7XXyWbNBVNf5IAc",
+  updatedAt: "2026-11-04",
   // 本届奖励（展示用）
   rewards: [
     { place: 1, medal: "🥇", label: "Steam 礼品卡 300 元" },
@@ -36,17 +39,9 @@ const EVENT = {
   ],
 };
 
-// 第二届实时榜单（刚开赛，暂无成绩）。审核通过一位就往下面加一条：
-// { name: "玩家名", qq: "10001", score: 1234567, platform: "Steam", video: "https://...", date: "2026-09-01" },
-const PLAYERS = [
-  { name: "Bastion0589", qq: "1971948327", score: 7063539, platform: "Steam", video: "https://www.bilibili.com/video/BV1qrY86aEp1/", date: "2026-09-11" },
-  { name: "Rxy",         qq: "807939420",  score: 2495948, platform: "Steam", video: "", date: "2026-09-07" },
-  { name: "阿尔托莉雅",  qq: "515208093",  score: 1583928, platform: "Steam", video: "", date: "2026-09-11" },
-  { name: "我变强了！",  qq: "1823004786", score: 357829,  platform: "Steam", video: "", date: "2026-09-11" },
-  { name: "安念研",      qq: "2565315854", score: 4718984, platform: "Steam", video: "", date: "2026-09-11" },
-  { name: "子扬",        qq: "2964959443", score: 7519129, platform: "Steam", video: "", date: "2026-09-11" },
-  { name: "瞬闪影",      qq: "2412216282", score: 4970029, platform: "Steam", video: "", date: "2026-09-11" },
-];
+// 第三届实时榜单（刚开赛，暂无成绩）。审核通过一位就往下面加一条：
+// { name: "玩家名", qq: "10001", score: 1234567, platform: "Steam", video: "https://...", date: "2026-11-01" },
+const PLAYERS = [];
 
 // 积分规则：每届最终排名前十名依次得 10、9、…、1 分；第 11 名及以后 0 分。
 const POINTS_TABLE = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];

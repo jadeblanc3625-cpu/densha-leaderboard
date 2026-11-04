@@ -140,7 +140,7 @@
         <li>第 11 名及以后不获得积分。</li>
         <li>各届积分<b>持续累计</b>，同一玩家跨届成绩累加到一起。</li>
         <li>最终积分结算以 <b>QQ 号码</b> 为准，更改代号不会影响统计。</li>
-        <li><span id="goal-cn">五</span>届得分挑战赛结束后，累计积分排名前三的玩家分别获得定制实体奖章：🥇金 / 🥈银 / 🥉铜（规格及重量以官方后续通知为准）。</li>
+        <li><span id="goal-cn">五</span>届得分挑战赛结束后，累计积分排名前 3 的玩家获得定制实体奖章：🥇金 / 🥈银 / 🥉铜 + 专属社区称号；前 10 名均有精美周边（规格以官方后续通知为准）。</li>
       </ul>
       <div class="ptbl" id="ptbl"></div>
     </div>
@@ -148,7 +148,7 @@
     <footer id="footer"></footer>
   </div>
 
-  <script src="scores.js?v=14"></script>
+  <script src="scores.js?v=15"></script>
   <script>
     function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
     const seasons = (typeof SEASONS !== "undefined" && Array.isArray(SEASONS)) ? SEASONS : [];
@@ -205,18 +205,18 @@
     const medals = ["🥇","🥈","🥉"];
     const leaders = standings.slice(0,3).map((s,i)=>`${medals[i]} ${escapeHtml(s.name)}（${s.total}）`).join("　");
     document.getElementById("goal").innerHTML = `
-      <div class="g-title">🏆 ${goalCn}届奖章争夺 · 累计积分前三</div>
+      <div class="g-title">🏆 ${goalCn}届总积分大奖 · 累计前三</div>
       <div class="g-medals">🥇 金奖章　🥈 银奖章　🥉 铜奖章</div>
       <div class="g-body">${played >= goalSeasons
-        ? `${goalCn}届挑战赛已全部结束，最终累计前三名将获得定制实体奖章。`
-        : `${goalCn}届挑战赛结束后，累计积分前三名将分别获得定制实体奖章。<br>已进行 ${played} / ${goalSeasons} 届，还有 ${goalSeasons - played} 届。`}</div>
+        ? `${goalCn}届挑战赛已全部结束，累计积分前 3 名获得定制实体金/银/铜奖章 + 专属社区称号，前 10 名均有精美周边。`
+        : `${goalCn}届挑战赛结束后，累计积分前 3 名获得定制实体金/银/铜奖章 + 专属社区称号，前 10 名均有精美周边。<br>已进行 ${played} / ${goalSeasons} 届，还有 ${goalSeasons - played} 届。`}</div>
       ${leaders ? `<div class="g-progress">当前领跑：${leaders}</div>` : ``}`;
 
     // ---- 累计积分榜 ----
     const boardEl = document.getElementById("board");
     if(standings.length === 0){
       boardEl.innerHTML = `<div class="empty"><div class="big">🏁 积分虚位以待</div>
-        <div>历届前十名的积分会累计到这里，第二届结束后见分晓。</div></div>`;
+        <div>历届前十名的积分会累计到这里，第一届结束后见分晓。</div></div>`;
     } else {
       boardEl.insertAdjacentHTML("beforeend", `
         <div class="row head">
