@@ -30,7 +30,7 @@ const EVENT = {
   stage:     "关西区域 5-2-2 「开战在即」",
   deadline:  "2026-11-19T23:59:59+08:00",
   formUrl:   "https://leiting.feishu.cn/share/base/form/shrcnDEfDW4z7XXyWbNBVNf5IAc",
-  updatedAt: "2026-11-04",
+  updatedAt: "2026-11-06",
   // 本届奖励（展示用）
   rewards: [
     { place: 1, medal: "🥇", label: "Steam 礼品卡 300 元" },
@@ -41,7 +41,9 @@ const EVENT = {
 
 // 第三届实时榜单（刚开赛，暂无成绩）。审核通过一位就往下面加一条：
 // { name: "玩家名", qq: "10001", score: 1234567, platform: "Steam", video: "https://...", date: "2026-11-01" },
-const PLAYERS = [];
+const PLAYERS = [
+  { name: "次元乡的暗黑邪神", qq: "196754453", score: 2326622, platform: "Steam", video: "https://www.bilibili.com/video/BV1Pg4q6LEEM/", date: "2026-11-06" },
+];
 
 // 积分规则：每届最终排名前十名依次得 10、9、…、1 分；第 11 名及以后 0 分。
 const POINTS_TABLE = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
