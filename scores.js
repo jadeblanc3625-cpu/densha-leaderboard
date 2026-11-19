@@ -30,7 +30,7 @@ const EVENT = {
   stage:     "关西区域 5-2-2 「开战在即」",
   deadline:  "2026-11-19T23:59:59+08:00",
   formUrl:   "https://leiting.feishu.cn/share/base/form/shrcnDEfDW4z7XXyWbNBVNf5IAc",
-  updatedAt: "2026-11-19",
+    updatedAt: "2026-11-20",
   // 本届奖励（展示用）
   rewards: [
     { place: 1, medal: "🥇", label: "Steam 礼品卡 300 元" },
@@ -45,7 +45,7 @@ const PLAYERS = [
   { name: "次元乡的暗黑邪神", qq: "196754453", score: 2326622, platform: "Steam", video: "https://www.bilibili.com/video/BV1Pg4q6LEEM/", date: "2026-11-06" },
   { name: "Bastion0589", qq: "1971948327", score: 7436505, platform: "Steam", video: "https://www.bilibili.com/video/BV1YqsS6tEyT/", date: "2026-11-18" },
   { name: "我又来了", qq: "1823004786", score: 382905, platform: "Steam", video: "", date: "2026-11-16" },
-  { name: "子扬", qq: "2964959443", score: 8421495, platform: "Steam", video: "", date: "2026-11-19" },
+  { name: "子扬", qq: "2964959443", score: 9145679, platform: "Steam", video: "https://b23.tv/JyL0OM0", date: "2026-11-20" },
 ];
 
 // 积分规则：每届最终排名前十名依次得 10、9、…、1 分；第 11 名及以后 0 分。
